@@ -19,6 +19,5 @@ def find_toml_files(path:Path)->List[Path]:
 def get_toml_configs(path:Path):
     toml_files=find_toml_files(path)
     if toml_files:
-        print(toml_files[0].absolute())
         with open(toml_files[0]) as toml_file:
             return tomli.loads(toml_file.read())
