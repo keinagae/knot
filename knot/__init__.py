@@ -31,3 +31,13 @@ class Knot:
         :return:
         """
         StartApp(self.configs,app_name=app_name).render()
+
+    def make_model(self,app_name,model_name:str=None):
+        """
+        create a new model in specified app
+        :param app_name: app name in which model should be created
+        :param model_name: name of the model to create
+        :return:
+        """
+        if not model_name:
+            model_name=input("Enter your model name: ")
