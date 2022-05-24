@@ -1,6 +1,6 @@
 
-class {{ model_name }}(model.Model):
-    pass
-{#{% for field in fields  %}#}
-{#    {{ field.name }}=model.{{ fields.type }}({% for key,value in  %}{{ key }}={{ value }},{% endfor %})#}
-{#{% endfor %}#}
+class {{ model_name }}(models.Model):
+{% for field in fields %}
+    {{ field["name"] }}=models.{{ field["type"] }}({% for argument in field["arguments"] %}{{ argument['name'] }}={{ argument['value'] }}{% if not loop.last %},{% endif %}{% endfor %})
+{% endfor %}
+

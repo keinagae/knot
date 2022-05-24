@@ -9,6 +9,9 @@ class BaseGenerator(ABC):
     """
     Base class for generators
     """
+
+    TEMPLATE_FILES={}
+
     def __init__(self, configs: KnotConfig,**kwargs):
         """
 

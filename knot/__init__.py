@@ -41,16 +41,33 @@ class Knot:
         :return:
         title:char max_length:22 null blank default:'45343'
         """
+        app=StartApp(self.configs, app_name=app_name)
+        if not app.app_exists():
+            app.render()
         if not model_name:
             model_name=input("Enter your model name: ")
             print("Please enter filed name like name:type arg:value")
-            # fields=[]
-            # while True:
-            #     field_info=input("")
-            #     if not field_info:
-            #         break
-            #     fields.append(field_info)
-            # print(model_name)
-            # for field in fields:
-            #     print(field)
-            MakeModel(self.configs,app_name=app_name,model_name=model_name).render()
+            fields=[]
+            while True:
+                field={}
+                field_info=input("")
+                if not field_info:
+                    break
+                field_info=field_info.split(" ")
+                field_name,field_type=field_info[0].split(":")
+                arguments=[]
+                field={
+                    "name": field_name,
+                    "type":field_type,
+                    "arguments":arguments
+                }
+                field_arguments=field_info[1:]
+                for argument in field_arguments:
+                    argument_name,argument_value=argument.split(":")
+                    arguments.append({
+                        "name": argument_name,
+                        "value": argument_value,
+                    })
+                fields.append(field)
+            MakeModel(self.configs,app_name=app_name,model_name=model_name,fields=fields).render()
+
